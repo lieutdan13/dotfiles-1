@@ -1,0 +1,24 @@
+! Color configuration
+*foreground: #E8E8D3
+*background: #3B3B3B
+
+*color0:  #3B3B3B
+*color1:  #CF6A4C
+*color2:  #70B950
+*color3:  #D8AD4C
+*color4:  #597BC5
+*color5:  #A037B0
+*color6:  #71B9F8
+*color7:  #E8E8D3
+
+*color8:  #873119
+*color9:  #799D6A
+*color10: #A19A5D
+*color11: #1D3D80 
+*color12: #7C4084
+*color13: #CE86D8
+*color14: #95CBFC
+*color15: #F3F3E7
+
+XTerm*faceName: PragmataPro
+XTerm*faceSize: 12

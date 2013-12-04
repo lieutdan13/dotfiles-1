@@ -10,15 +10,18 @@ call vundle#rc()
 
 " Vundle shit
 Bundle 'gmarik/vundle'
-
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
+Bundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
+
+filetype plugin indent on
 
 set history=400 "increase number of commands remembered
 set autoread
 set so=7 " when scrolling scroll the page 7 lines before top/bot of page
+set number
 set ruler
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l " you can now use h and l to move to previous line
@@ -29,8 +32,15 @@ set mat=2
 " Omnicomplete
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+"let SuperTabDefaultCompletionType = "<C-X><C-O>"
+" omnicompletion : words
+inoremap <leader>, <C-x><C-o>
 
+" omnicompletion : filenames
+inoremap <leader>: <C-x><C-f>
+
+" omnicompletion : lines
+inoremap <leader>= <C-x><C-l>
 set completeopt=longest,menuone
 
 " We don't need sound or visual bells for errors thnx
@@ -89,7 +99,7 @@ map k gk
 
 " space becomes search, Ctrl-space is backwards search
 map <space> /
-map <space> ?
+map <c-space> ?
 
 " Move between windows by using Ctrl-{h|j|k|l}
 map <C-h> <C-W>h
@@ -131,20 +141,23 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 map <leader>pp :setlocal paste!<cr>
 
 " Key binds
-inoremap <c-d> <esc>ddi
+"
+" normal mode
+nnoremap <leader>smc :vsplit ~/.vim/bundle/snipmate.vim/snippets/c.snippets<cr>
+nnoremap <leader>d dd
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>xp "+p
 
+" visual mode
+vnoremap <leader>xy "+y
+
+" insert mode
+inoremap <c-d> <esc>ddi
 inoremap <c-u> <esc>Ui
 
-nnoremap <leader>d dd
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
-nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-
-":nnoremap <leader>ap  
-
+" Snippets
 inoremap <c-e> <c-o>:python zencoding_vim.expand_abbreviation()<cr>
 
 " set addition and subtraction to ignore leading 0s

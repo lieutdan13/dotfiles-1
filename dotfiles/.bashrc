@@ -110,6 +110,10 @@ fi
 export PYTHONPATH=/home/dsr/github/wrench
 export CLASSPATH=.:/home/dsr/tomcat/WEB-INF/lib/servlet-api.jar
 
+# User aliases
+alias ebrc='vim ~/.bashrc'
+alias utvm='ssh csetadmin@131.183.223.29'
+
 # AndroidDev PATH
 export PATH=${PATH}:~/android-sdk-linux/tools
 export PATH=${PATH}:~/android-sdk-linux/platform-tools

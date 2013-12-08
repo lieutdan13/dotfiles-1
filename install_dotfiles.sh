@@ -13,6 +13,7 @@ files=(
     '.i3'
     '.Xdefaults'
     '.Xmodmap'
+    '.gitignore_global'
 )
 
 for i in "${files[@]}"

@@ -1,20 +1,39 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-# install programs
-
 # utilities
-apt-get install ranger
-apt-get install weechat-curses
-apt-get install xpdf
+util_programs=(
+    'ranger'
+    'weechat-curses'
+    'xpdf'
+)
+
+for i in "${util_programs[@]}"
+do
+    apt-get install $i
+done
 
 # media
-apt-get install vlc
-apt-get install firefox
+media_programs=(
+    'vlc'
+    'firefox'
+)
 
-# programming
-apt-get install vim-gtk
-apt-get install git
-apt-get install valgrind
-apt-get install gcc
-apt-get install build-essential
+for i in "${media_programs[@]}"
+do
+    apt-get install $i
+done
+
+# development tools
+devtools=(
+    'vim-gtk'
+    'git'
+    'valgrind'
+    'gcc'
+    'build-essential'
+)
+
+for i in "${devtools[@]}"
+do
+    apt-get install $i
+done

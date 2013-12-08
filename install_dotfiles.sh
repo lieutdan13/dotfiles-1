@@ -8,6 +8,7 @@ files=(
     '.vim'
     '.vimrc'
     '.bashrc'
+    '.bash_aliases'
     '.crontab'
     '.i3'
     '.Xdefaults'

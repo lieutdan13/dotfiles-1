@@ -9,6 +9,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " Vundle shit
+" 
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'

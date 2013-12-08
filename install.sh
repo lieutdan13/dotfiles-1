@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-cd $HOME/desktop
+repo_path="$HOME/github/desktop"
+cd $repo_path
 
 /bin/sh install_dotfiles.sh
 /bin/sh install_bin.sh

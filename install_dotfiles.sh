@@ -18,6 +18,16 @@ files=(
 
 for i in "${files[@]}"
 do
-    rm -rf $HOME/$i
+    unlink $HOME/$i
     ln -s $repo_path/dotfiles/$i $HOME/$i
 done
+
+unlink $HOME/bin
+ln -s $repo_path/scripts $HOME/bin
+
+# install vundle
+if [ ! -d $repo_path/dotfiles/.vim/bundle/vundle ]
+then
+    git clone https://github.com/gmarik/vundle.git $repo_path/dotfiles/.vim/bundle/vundle
+    vim +BundleInstall +qall
+fi

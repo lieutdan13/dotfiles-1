@@ -14,6 +14,7 @@ files=(
     '.Xdefaults'
     '.Xmodmap'
     '.gitignore_global'
+    '.tmux.conf'
 )
 
 for i in "${files[@]}"

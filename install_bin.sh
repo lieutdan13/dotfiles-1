@@ -31,6 +31,7 @@ devtools=(
     'valgrind'
     'gcc'
     'build-essential'
+    'tmux'
 )
 
 for i in "${devtools[@]}"

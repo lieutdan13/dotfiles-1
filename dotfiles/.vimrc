@@ -147,10 +147,14 @@ map <leader>pp :setlocal paste!<cr>
 nnoremap <leader>smc :vsplit ~/.vim/bundle/snipmate.vim/snippets/c.snippets<cr>
 nnoremap <leader>d dd
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>pv :exec "!$HOME/bin/update_vimrc.sh"<cr><cr>
 nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>xp "+p
 
+" Swap colon and semicolon
+nnoremap ; :
+nnoremap : :
 
 " visual mode
 vnoremap <leader>xy "+y

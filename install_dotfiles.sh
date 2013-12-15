@@ -19,11 +19,17 @@ files=(
 
 for i in "${files[@]}"
 do
-    unlink $HOME/$i
+    if [ -L $HOME/$i ]
+    then
+        unlink $HOME/$i
+    fi
     ln -s $repo_path/dotfiles/$i $HOME/$i
 done
 
-unlink $HOME/bin
+if [ -L $HOME/bin ]
+then
+    unlink $HOME/bin
+fi
 ln -s $repo_path/scripts $HOME/bin
 
 # install vundle

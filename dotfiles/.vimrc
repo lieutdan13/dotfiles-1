@@ -152,6 +152,10 @@ nnoremap <leader>pv :exec "!$HOME/bin/update_vimrc.sh"<cr><cr>
 nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>xp "+p
 
+" move without having to shift []
+nnoremap [ {
+nnoremap ] }
+
 " Swap colon and semicolon
 nnoremap ; :
 nnoremap : :

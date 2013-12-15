@@ -19,16 +19,19 @@ files=(
 
 for i in "${files[@]}"
 do
-    if [ -L $HOME/$i ]
+    # check to make sure the file doesn't exist
+    if [ -e $HOME/$i ]
     then
-        unlink $HOME/$i
+        rm $HOME/$i
     fi
+
     ln -s $repo_path/dotfiles/$i $HOME/$i
+
 done
 
-if [ -L $HOME/bin ]
+if [ -e $HOME/bin ]
 then
-    unlink $HOME/bin
+    rm $HOME/bin
 fi
 ln -s $repo_path/scripts $HOME/bin
 

@@ -30,6 +30,14 @@ set lazyredraw " Don't constantly update screen when macros are running
 set showmatch " hl matching brackets
 set mat=2
 
+" Set standard location for vim swap files
+set backup
+set backupdir=/tmp,~/tmp
+set backupskip=/tmp/*
+set directory=/tmp,~/tmp
+set writebackup
+
+
 " Omnicomplete
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete

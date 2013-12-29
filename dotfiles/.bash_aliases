@@ -14,3 +14,15 @@ export CLASSPATH=${CLASSPATH}:~/android-sdk-linux/extras/android/support/v4/andr
 alias tmux='tmux -2'
 
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
+
+# start bin with as a background job
+#alias nulled='firefox >> /dev/null 2>&1 &'
+
+# allows us to run a command in the background
+function null_command {
+    $1 >> /dev/null 2>&1 &
+}
+
+function upgrade_all {
+    sudo -u apt-get update && apt-get upgrade
+}

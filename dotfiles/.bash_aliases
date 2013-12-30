@@ -24,5 +24,5 @@ function null_command {
 }
 
 function upgrade_all {
-    sudo -u apt-get update && apt-get upgrade
+    sudo apt-get update && sudo apt-get upgrade
 }

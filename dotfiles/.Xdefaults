@@ -2,6 +2,7 @@
 *foreground: #E8E8D3
 *background: #3B3B3B
 
+# light
 *color0:  #3B3B3B
 *color1:  #CF6A4C
 *color2:  #70B950
@@ -11,6 +12,7 @@
 *color6:  #71B9F8
 *color7:  #E8E8D3
 
+# dark
 *color8:  #873119
 *color9:  #799D6A
 *color10: #A19A5D

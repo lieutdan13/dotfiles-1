@@ -1,6 +1,6 @@
 ! Color configuration
 *foreground: #E8E8D3
-*background: #3B3B3B
+*background: #1C1C1C
 
 *color0:  #3B3B3B
 *color1:  #CF6A4C
@@ -21,4 +21,4 @@
 *color15: #F3F3E7
 
 XTerm*faceName: PragmataPro
-XTerm*faceSize: 12
+XTerm*faceSize: 10

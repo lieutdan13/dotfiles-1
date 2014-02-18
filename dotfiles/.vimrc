@@ -15,7 +15,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 "Bundle 'ervandew/supertab'
-Bundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
 
 filetype plugin indent on
 
@@ -159,6 +158,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>pv :exec "!$HOME/bin/update_vimrc.sh"<cr><cr>
 nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>xp "+p
+
+" Tagbar
+nmap <F8> :TagbarToggle<cr>
 
 " move without having to shift []
 nnoremap [ {

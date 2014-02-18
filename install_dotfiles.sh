@@ -17,6 +17,7 @@ files=(
     '.tmux.conf'
     '.gdbinit'
     '.git-completion.bash'
+    '.gitconfig'
 )
 
 for i in "${files[@]}"

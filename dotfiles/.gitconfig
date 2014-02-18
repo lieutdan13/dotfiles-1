@@ -1,0 +1,9 @@
+[user]
+	name = bmoar
+	email = pyjedi@gmail.com
+[core]
+	excludesfile = /home/scoob/.gitignore_global
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab
+[color]
+	ui = true

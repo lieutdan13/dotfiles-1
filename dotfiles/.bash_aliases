@@ -13,6 +13,7 @@ alias tmux='tmux -2'
 
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
+
 # start bin with as a background job
 #alias nulled='firefox >> /dev/null 2>&1 &'
 
@@ -20,6 +21,7 @@ alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 function null_command {
     $1 >> /dev/null 2>&1 &
 }
+alias unclutter='null_command "unclutter -idle -0"'
 
 function upgrade_all {
     sudo apt-get update && sudo apt-get upgrade

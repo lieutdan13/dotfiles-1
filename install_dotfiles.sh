@@ -9,6 +9,8 @@ files=(
     '.vimrc'
     '.bashrc'
     '.bash_aliases'
+    '.bash_profile'
+    '.bash_logout'
     '.crontab'
     '.i3'
     '.Xdefaults'

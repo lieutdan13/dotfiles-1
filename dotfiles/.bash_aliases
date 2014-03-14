@@ -158,10 +158,10 @@ if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
     # @4 - Clean repository - nothing to commit
-    echo "'$IRed'"$(__git_ps1 " (%s)"); \
+    echo "'$IGreen'"$(__git_ps1 " (%s)"); \
   else \
     # @5 - Changes to working tree
-    echo "'$IBlack'"$(__git_ps1 " {%s}"); \
+    echo "'$IRed'"$(__git_ps1 " {%s}"); \
   fi) '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
 else \
   # @2 - Prompt when not in GIT repo

@@ -13,6 +13,7 @@ files=(
     '.crontab'
     '.i3'
     '.Xdefaults'
+    '.Xresources'
     '.Xmodmap'
     '.gitignore_global'
     '.tmux.conf'

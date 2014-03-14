@@ -1,23 +1,32 @@
+" ===========================================================
 " Global settings
+" ===========================================================
 let mapleader = ","
 let g:mapleader = ","
 
 set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-" Vundle shit
-" 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
-"Bundle 'ervandew/supertab'
-
 filetype plugin indent on
 
+colorscheme jellybeans
+set guifont=PragmataPro\ 12
+set t_Co=256 " set 256 color mode, we want more colors
+syntax enable
+set guioptions-=m "remove menu bar
+set guioptions-=T "remove toolbar
+set guioptions-=r "remove scrollbar
+set guioptions-=l
+set guioptions-=b
+set guioptions-=L
+set guioptions-=R
+set foldmethod=syntax
+set foldnestmax=2
+
+" Status line
+set laststatus=2
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+set winaltkeys=no " disable winalt keys lol
+set viminfo^=% " remember info about buffers on close
 set history=400 "increase number of commands remembered
 set autoread
 set so=7 " when scrolling scroll the page 7 lines before top/bot of page
@@ -28,6 +37,8 @@ set whichwrap+=<,>,h,l " you can now use h and l to move to previous line
 set lazyredraw " Don't constantly update screen when macros are running
 set showmatch " hl matching brackets
 set mat=2
+set splitright " split the windows to the right instead of left
+set nrformats= " set addition and subtraction to ignore leading 0s
 
 " Set standard location for vim swap files
 set backup
@@ -35,21 +46,6 @@ set backupdir=/tmp,~/tmp
 set backupskip=/tmp/*
 set directory=/tmp,~/tmp
 set writebackup
-
-
-" Omnicomplete
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-"let SuperTabDefaultCompletionType = "<C-X><C-O>"
-" omnicompletion : words
-inoremap <leader>, <C-x><C-o>
-
-" omnicompletion : filenames
-inoremap <leader>: <C-x><C-f>
-
-" omnicompletion : lines
-inoremap <leader>= <C-x><C-l>
-set completeopt=longest,menuone
 
 " We don't need sound or visual bells for errors thnx
 set noerrorbells
@@ -65,8 +61,6 @@ set hlsearch
 map <silent> <leader><cr> :noh<cr>
 set incsearch
 set magic " use . $ etc with regex
-" Don't use a swapfile, can be bad for large files
-"set noswapfile
 
 " Spacing and junk
 set shiftwidth=4
@@ -81,25 +75,43 @@ set lbr
 set tw=500
 set wrap
 
+" ===========================================================
+" Vim Plugins
+" ===========================================================
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Vundle shit
+" 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'majutsushi/tagbar'
+Bundle 'msanders/snipmate.vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
+
+" YouCompleteMe
+let g:ycm_show_diagnostics_ui = 0
+
+" Ctags
+set tags=./.tags,.tags;$HOME
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-p> :exec("ptag ".expand("<cword>"))<CR>
+
+" easytags
+let g:ycm_global_ycm_extra_conf = '~/.ycm_global_conf.py'
+
+" Tagbar
+nmap <F8> :TagbarToggle<cr>
+
+" ===========================================================
+" Keybindings
+" ===========================================================
 " Visual mode easy searching by Michael Naumann
 " In visual mode, press * or # searches for current selection
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-
-" I didn't want to say this in front of Patrick but that hat makes you look like a girl.
-" Am I a pretty girl?
-colorscheme jellybeans
-set guifont=PragmataPro\ 12
-set t_Co=256 " set 256 color mode, we want more colors
-syntax enable
-set guioptions-=m "remove menu bar
-set guioptions-=T "remove toolbar
-set guioptions-=r "remove scrollbar
-set guioptions-=l
-set guioptions-=b
-set guioptions-=L
-set guioptions-=R
-" moving aroud help
 
 " move up and down between long lines better
 map j gj
@@ -126,20 +138,11 @@ autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ 	exe "normal! g`\"" | 
 	\ endif
-" remember info about buffers on close
-set viminfo^=%
-
-" Status line
-set laststatus=2
-
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " Remap 0 to first non-blank char
 map 0 ^
 
 "Move a line of text using Alt+{j|k}
-" disable winalt keys lol
-set winaltkeys=no
 "nmap <c-j> mz:m+<cr>`z
 "nmap <c-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -148,8 +151,6 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-" Key binds
-"
 " normal mode
 nnoremap <leader>smc :vsplit ~/.vim/bundle/snipmate.vim/snippets/c.snippets<cr>
 nnoremap <leader>d dd
@@ -158,13 +159,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>pv :exec "!$HOME/bin/update_vimrc.sh"<cr><cr>
 nmap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>xp "+p
-
-" Tagbar
-nmap <F8> :TagbarToggle<cr>
-
-" move without having to shift []
-nnoremap [ {
-nnoremap ] }
 
 " Swap colon and semicolon
 nnoremap ; :
@@ -180,8 +174,6 @@ inoremap <c-u> <esc>Ui
 " Snippets
 inoremap <c-e> <c-o>:python zencoding_vim.expand_abbreviation()<cr>
 
-" set addition and subtraction to ignore leading 0s
-set nrformats=
 
 " Lang specific stuff
 "enable python extra highlighting
@@ -190,7 +182,9 @@ if has("eval")
   let python_slow_sync = 1
 endif
 
+" ===========================================================
 " Functions
+" ===========================================================
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()

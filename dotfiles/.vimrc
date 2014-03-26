@@ -4,6 +4,9 @@
 let mapleader = ","
 let g:mapleader = ","
 
+let localleader = "\\"
+let g:localleader = "\\"
+
 set nocompatible
 filetype plugin indent on
 
@@ -18,7 +21,7 @@ set guioptions-=l
 set guioptions-=b
 set guioptions-=L
 set guioptions-=R
-set foldmethod=syntax
+set foldmethod=manual
 set foldnestmax=2
 
 " Status line
@@ -95,7 +98,7 @@ Bundle 'xolox/vim-easytags'
 let g:ycm_show_diagnostics_ui = 0
 
 " Ctags
-set tags=./.tags,.tags;$HOME
+set tags=$HOME/.vimtags
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-p> :exec("ptag ".expand("<cword>"))<CR>
 
@@ -104,6 +107,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_global_conf.py'
 
 " Tagbar
 nmap <F8> :TagbarToggle<cr>
+
 
 " ===========================================================
 " Keybindings
@@ -185,6 +189,29 @@ endif
 " ===========================================================
 " Functions
 " ===========================================================
+
+" Use :Shell to open  a scratch window with the output of the
+" command. Use <leader>r to rerun the command in the scratch
+" window.
+
+" Shortcut commands for git for ExecuteInShell
+
+function! s:ExecuteInShell(command)
+  let command = join(map(split(a:command), 'expand(v:val)'))
+  let winnr = bufwinnr('^' . command . '$')
+  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+  echo 'Execute ' . command . '...'
+  silent! execute 'silent %!'. command
+  silent! execute 'resize ' . line('$')
+  silent! redraw
+  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+  echo 'Shell command ' . command . ' executed.'
+endfunction
+
+command! -complete=file -nargs=* Git call s:ExecuteInShell('git '.<q-args>)
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()

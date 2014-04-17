@@ -8,7 +8,7 @@ set nocompatible
 filetype plugin indent on
 
 colorscheme jellybeans
-set guifont=PragmataPro\ 12
+set guifont=PragmataPro\ 10
 set t_Co=256 " set 256 color mode, we want more colors
 syntax enable
 set guioptions-=m "remove menu bar
@@ -18,7 +18,7 @@ set guioptions-=l
 set guioptions-=b
 set guioptions-=L
 set guioptions-=R
-set foldmethod=syntax
+set foldmethod=manual
 set foldnestmax=2
 
 " Status line

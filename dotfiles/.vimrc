@@ -96,14 +96,12 @@ Bundle 'xolox/vim-easytags'
 
 " YouCompleteMe
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_global_ycm_extra_conf = '~/.ycm_global_conf.py'
 
 " Ctags
 set tags=$HOME/.vimtags
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-p> :exec("ptag ".expand("<cword>"))<CR>
-
-" easytags
-let g:ycm_global_ycm_extra_conf = '~/.ycm_global_conf.py'
 
 " Tagbar
 nmap <F8> :TagbarToggle<cr>

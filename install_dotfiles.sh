@@ -20,6 +20,7 @@ files=(
     '.gdbinit'
     '.git-completion.bash'
     '.gitconfig'
+    '.ssh'
 )
 
 for i in "${files[@]}"

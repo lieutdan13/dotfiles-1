@@ -38,10 +38,10 @@ set ruler
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l " you can now use h and l to move to previous line
 set lazyredraw " Don't constantly update screen when macros are running
-set showmatch " hl matching brackets
 set mat=2
 set splitright " split the windows to the right instead of left
 set nrformats= " set addition and subtraction to ignore leading 0s
+let loaded_matchparen = 1
 
 " Set standard location for vim swap files
 set backup

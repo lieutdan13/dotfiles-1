@@ -87,9 +87,6 @@ call vundle#rc()
 " Vundle shit
 " 
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'

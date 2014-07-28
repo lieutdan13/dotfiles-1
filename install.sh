@@ -8,53 +8,48 @@ RM="/bin/rm"
 LN="/bin/ln"
 repo_path="$HOME/git/dotfiles"
 
-### globals
-dotfiles=(
-    '.vim'
-    '.vimrc'
-    '.bashrc'
-    '.bash_aliases'
-    '.bash_logout'
-    '.crontab'
-    '.Xdefaults'
-    '.Xresources'
-    '.Xmodmap'
-    '.gitignore_global'
-    '.tmux.conf'
-    '.gdbinit'
-    '.git-completion.bash'
-    '.gitconfig'
-    '.git-prompt.sh'
-    '.ssh'
-)
-
 ### functions
 link_dotfiles() {
 
-for i in "${dotfiles[@]}"; do
+    dotfiles=(
+        '.vim'
+        '.vimrc'
+        '.bashrc'
+        '.bash_aliases'
+        '.bash_logout'
+        '.crontab'
+        '.Xdefaults'
+        '.Xresources'
+        '.Xmodmap'
+        '.gitignore_global'
+        '.tmux.conf'
+        '.gdbinit'
+        '.git-completion.bash'
+        '.gitconfig'
+        '.git-prompt.sh'
+        '.ssh'
+    )
 
-    if [ -e $HOME/$i ]; then
-        $RM $HOME/$i
-    fi
+    for i in "${dotfiles[@]}"; do
 
-    $LN -s $repo_path/dotfiles/$i $HOME/$i
+        if [ -e "$HOME/$i" ]; then
+            $RM "$HOME/$i"
+        fi
 
-done
+        $LN -s "$repo_path/dotfiles/$i" "$HOME/$i"
+
+    done
 
 }
 
 link_bin() {
 
-    if [ -e $HOME/bin ]; then
-        $RM $HOME/bin
+    if [ -e "$HOME/bin" ]; then
+        $RM "$HOME/bin"
     fi
 
-    $LN -s $repo_path/dotfiles/bin $HOME/bin
+    $LN -s "$repo_path/bin" "$HOME/bin"
 
-}
-
-usage() {
-    echo "Does something"
 }
 
 main() {

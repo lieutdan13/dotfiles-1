@@ -11,7 +11,7 @@ set nocompatible
 filetype plugin indent on
 
 colorscheme jellybeans
-set guifont=PragmataPro\ 10
+"set guifont=PragmataPro\ 10
 set t_Co=256 " set 256 color mode, we want more colors
 syntax enable
 set guioptions-=m "remove menu bar
@@ -102,6 +102,10 @@ map <A-p> :exec("ptag ".expand("<cword>"))<CR>
 
 " Tagbar
 nmap <F8> :TagbarToggle<cr>
+
+" easytags
+let g:easytags_async = 1
+let g:easytags_syntax_keyword= 'always'
 
 
 " ===========================================================
@@ -215,6 +219,8 @@ func! DeleteTrailingWS()
 	exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.yml :call DeleteTrailingWS()
+autocmd BufWrite *.sh :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 function! CmdLine(str)

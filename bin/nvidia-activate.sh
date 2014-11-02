@@ -8,5 +8,5 @@ sudo modprobe bbswitch
 optirun true
 intel-virtual-output
 
-xrandr --output VIRTUAL1 --mode VIRTUAL1.735-1920x1080
-xrandr --output VIRTUAL1 --right-of LVDS1
+xrandr --output VIRTUAL3 --mode VIRTUAL3.737-1920x1080
+xrandr --output VIRTUAL3 --right-of LVDS1

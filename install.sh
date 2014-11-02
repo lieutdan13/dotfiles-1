@@ -3,12 +3,10 @@
 set -eu
 set -o pipefail
 
-### bin
 RM="/bin/rm"
 LN="/bin/ln"
 repo_path="$HOME/git/dotfiles"
 
-### functions
 link_dotfiles() {
 
     dotfiles=(
@@ -27,7 +25,6 @@ link_dotfiles() {
         '.git-completion.bash'
         '.gitconfig'
         '.git-prompt.sh'
-        '.ssh'
     )
 
     for i in "${dotfiles[@]}"; do

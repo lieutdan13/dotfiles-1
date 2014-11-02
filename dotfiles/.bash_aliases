@@ -1,8 +1,13 @@
 # User aliases
 alias ebrc='vim ~/.bashrc'
+alias eba='vim ~/.bash_aliases'
 
-# java junk
-export CLASSPATH=.:/home/dsr/tomcat/WEB-INF/lib/servlet-api.jar
+xset r rate 250 35
+
+# tugboat digital ocean
+alias tb='tugboat'
+alias tbd='tugboat droplets'
+alias tbi='tugboat info'
 
 # AndroidDev PATH
 export PATH=${PATH}:~/android-sdk-linux/tools
@@ -172,3 +177,5 @@ else \
   # @2 - Prompt when not in GIT repo
   echo " '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
 fi)'
+
+alias g='git'

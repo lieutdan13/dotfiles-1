@@ -15,3 +15,4 @@
 	unstage = reset HEAD --
 	last = log -l HEAD
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    lgs = log --pretty=format:'%Cred%h%Creset %C(green)(%cd)%Creset %s...%C(blue)%an%Creset' --abbrev-commit --date=short

@@ -1,0 +1,48 @@
+#!/usr/bin/env bash 
+
+set -eu
+set -o pipefail
+
+PREFIX="ny2.do"
+
+droplets=(
+    'ftp0'
+    'ftp1'
+    'dns0'
+    'dns1'
+    'nagios0'
+    )
+
+create() {
+    for i in "${droplets[@]}"; do
+        tugboat create "$i.$PREFIX"
+    done
+}
+
+destroy() {
+    for i in "${droplets[@]}"; do
+        tugboat destroy $i
+    done
+}
+
+usage() {
+    echo "dodroplets < create | destroy >"
+    exit 0
+}
+
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+case $1 in
+    c*)
+        create
+        ;;
+    d*)
+        destroy
+        ;;
+    *)
+        usage
+        ;;
+esac

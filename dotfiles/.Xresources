@@ -38,3 +38,14 @@
 
 XTerm*faceName: PragmataPro
 XTerm*faceSize: 10
+
+! urxvt conf 
+
+URxvt.scrollBar: false
+
+URxvt.font: xft:dejavu sans mono:medium:size=10
+URxvt.letterSpace: -1
+
+URxvt.perl-ext-common: ...,keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search

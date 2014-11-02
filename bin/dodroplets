@@ -3,14 +3,15 @@
 set -eu
 set -o pipefail
 
-PREFIX="ny2.do"
+PREFIX="ny3.do"
 
 droplets=(
-    'ftp0'
-    'ftp1'
     'dns0'
     'dns1'
     'nagios0'
+    'apt0'
+    'appdb0'
+    'dw0'
     )
 
 create() {

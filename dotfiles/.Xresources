@@ -46,6 +46,17 @@ URxvt.scrollBar: false
 URxvt.font: xft:dejavu sans mono:medium:size=10
 URxvt.letterSpace: -1
 
-URxvt.perl-ext-common: ...,keyboard-select
+! perls
+
+URxvt.perl-ext-common: keyboard-select,clipboard
+
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd: xclip -i -sel clipboard
+URxvt.clipboard.pastecmd: xclip -o -sel clipboard
+
+

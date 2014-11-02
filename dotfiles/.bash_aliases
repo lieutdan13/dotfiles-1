@@ -1,8 +1,14 @@
+xset r rate 250 35
+
 # User aliases
 alias ebrc='vim ~/.bashrc'
 alias eba='vim ~/.bash_aliases'
+alias sba='source ~/.bash_aliases'
 
-xset r rate 250 35
+# git aliases
+alias g='git'
+alias gpom='git pull --rebase origin master'
+alias gpum='git pull --rebase upstream master'
 
 # tugboat digital ocean
 alias tb='tugboat'
@@ -178,4 +184,3 @@ else \
   echo " '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
 fi)'
 
-alias g='git'

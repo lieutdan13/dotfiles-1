@@ -48,7 +48,7 @@ URxvt.letterSpace: -1
 
 ! perls
 
-URxvt.perl-ext-common: keyboard-select,clipboard
+URxvt.perl-ext-common: keyboard-select,clipboard,url-select
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -59,4 +59,4 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.clipboard.copycmd: xclip -i -sel clipboard
 URxvt.clipboard.pastecmd: xclip -o -sel clipboard
 
-
+URxvt.keysym.M-u: perl:url-select:select_next

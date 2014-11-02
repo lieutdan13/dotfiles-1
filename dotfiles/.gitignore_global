@@ -37,3 +37,6 @@
 ehthumbs.db
 Thumbs.db
 *.swp
+
+# bundle packages
+dotfiles/.vim/bundle/*/*

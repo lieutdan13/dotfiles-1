@@ -12,7 +12,7 @@ font pango: PragmataPro 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+Q kill

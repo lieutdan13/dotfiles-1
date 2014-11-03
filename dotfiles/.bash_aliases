@@ -7,8 +7,11 @@ alias sba='source ~/.bash_aliases'
 
 # git aliases
 alias g='git'
+
 alias gpom='git pull --rebase origin master'
 alias gpum='git pull --rebase upstream master'
+
+alias gpuom='git push origin master'
 
 # tugboat digital ocean
 alias tb='tugboat'

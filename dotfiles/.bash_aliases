@@ -13,6 +13,8 @@ alias gpum='git pull --rebase upstream master'
 
 alias gpuom='git push origin master'
 
+alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
+
 # tugboat digital ocean
 alias tb='tugboat'
 alias tbd='tugboat droplets'

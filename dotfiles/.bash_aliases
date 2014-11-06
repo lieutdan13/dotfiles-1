@@ -10,6 +10,7 @@ alias g='git'
 
 alias gpom='git pull --rebase origin master'
 alias gpum='git pull --rebase upstream master'
+alias gpud='git pull --rebase upstream develop'
 
 alias gpuom='git push origin master'
 

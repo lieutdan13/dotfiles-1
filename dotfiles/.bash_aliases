@@ -20,6 +20,9 @@ export PATH=${PATH}:~/android-sdk-linux/tools
 export PATH=${PATH}:~/android-sdk-linux/platform-tools
 export CLASSPATH=${CLASSPATH}:~/android-sdk-linux/extras/android/support/v4/android-support-v4.jar
 
+#lxc-aliases
+alias lxc-ls='lxc-ls --fancy'
+
 alias tmux='tmux -2'
 
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'

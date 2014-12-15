@@ -34,6 +34,13 @@ alias tmux='tmux -2'
 
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
+function check_ulimits {
+    for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2  
+}
+
+function check_sockets {
+    ss -f link -n -l -p
+}
 
 # start bin with as a background job
 #alias nulled='firefox >> /dev/null 2>&1 &'

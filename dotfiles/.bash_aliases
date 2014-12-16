@@ -42,6 +42,14 @@ function check_sockets {
     ss -f link -n -l -p
 }
 
+function gen_passwd_az {
+    cat /dev/urandom| tr -dc 'a-zA-Z0-9' | fold -w 16| head -n 4
+}
+
+function gen_passwd_safe {
+    cat /dev/urandom| tr -dc 'a-zA-Z0-9!@#$%^&*(){}?><-_' | fold -w 24| head -n 4
+}
+
 # start bin with as a background job
 #alias nulled='firefox >> /dev/null 2>&1 &'
 

@@ -81,7 +81,7 @@ set wrap
 " ===========================================================
 " Vim Plugins
 " ===========================================================
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Vundle shit

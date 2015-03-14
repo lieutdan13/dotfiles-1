@@ -1,8 +1,5 @@
 ---
 
-- set_fact:
-    term_perls_path: "{{ ansible_env.HOME }}/.test_urxvt/ext"
-
 - name: install packages
   sudo: true
   apt: >

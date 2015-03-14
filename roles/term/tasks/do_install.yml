@@ -26,4 +26,4 @@
   template: >
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
-  with_items: term_packages
+  with_items: term_templates

@@ -1,0 +1,4 @@
+---
+
+- include: do_install.yml
+  when: term_do_install |default(False) |bool == true

@@ -1,0 +1,8 @@
+# playbook to install desktop env
+
+---
+
+- name: do bmoar
+  hosts: bmoar
+  roles:
+      - { role: term, tags: term }

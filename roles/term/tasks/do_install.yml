@@ -1,0 +1,30 @@
+---
+
+- set_fact:
+    term_perls_path: "{{ ansible_env.HOME }}/.test_urxvt/ext"
+
+- name: install packages
+  sudo: true
+  apt: >
+      name=rxvt-unicode-256color
+      state=latest
+      update_cache=true
+  tags: packages
+
+- name: mk urxvt-perls dir
+  sudo: false
+  file: >
+      path={{ term_perls_path }}
+      state=directory
+      mode=750
+
+- name: clone urxvt-perls repo from github
+  git: >
+      repo={{ git_base_repo }}/urxvt-perls
+      dest={{ term_perls_path }}
+      accept_hostkey=yes
+
+- name: install .Xresources
+  template: >
+      src=.Xresources.j2
+      dest={{ ansible_env.HOME }}/.Xresources

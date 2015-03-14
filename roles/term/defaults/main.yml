@@ -1,1 +1,8 @@
 term_perls_path: "{{ ansible_env.HOME }}/.urxvt/ext"
+
+term_packages:
+    - rxvt-unicode-256color
+
+term_templates:
+    - .Xresources
+    - .Xmodmap

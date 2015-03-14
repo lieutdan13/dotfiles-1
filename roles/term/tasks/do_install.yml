@@ -24,7 +24,10 @@
       dest={{ term_perls_path }}
       accept_hostkey=yes
 
-- name: install .Xresources
+- name: install templates
   template: >
-      src=.Xresources.j2
-      dest={{ ansible_env.HOME }}/.Xresources
+      src={{ item }}.j2
+      dest={{ ansible_env.HOME }}/{{ item }}
+  with_items:
+      - .Xresources
+      - .Xmodmap

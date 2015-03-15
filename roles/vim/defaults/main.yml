@@ -1,0 +1,9 @@
+---
+
+vim_packages:
+    - vim
+
+vim_files: []
+
+vim_templates:
+    - .vimrc

@@ -1,0 +1,7 @@
+---
+
+- name: rm templates
+  file: >
+      path={{ ansible_env.HOME }}/{{ item }}
+      state=absent
+  with_items: vim_templates

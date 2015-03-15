@@ -15,3 +15,10 @@
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
   with_items: git_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: git_files

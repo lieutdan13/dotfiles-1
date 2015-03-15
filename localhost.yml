@@ -8,3 +8,4 @@
       - { role: secrets, tags: secrets }
       - { role: term, tags: term }
       - { role: ssh_client, tags: ssh_client }
+      - { role: git, tags: git }

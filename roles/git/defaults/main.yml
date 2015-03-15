@@ -1,0 +1,6 @@
+git_packages:
+    - git
+
+git_templates:
+    - .gitconfig
+

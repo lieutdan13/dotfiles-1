@@ -1,0 +1,18 @@
+[user]
+	name = {{ ansible_env.USER }}
+	email = {{ ansible_env.USER }}@rooted.systems
+[core]
+	excludesfile = /home/{{ ansible_env.USER }}/.gitignore_global
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -l HEAD
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    lgs = log --pretty=format:'%Cred%h%Creset %C(green)(%cd)%Creset %s...%C(blue)%an%Creset' --abbrev-commit --date=short

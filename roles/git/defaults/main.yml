@@ -3,4 +3,5 @@ git_packages:
 
 git_templates:
     - .gitconfig
+    - .gitignore_global
 

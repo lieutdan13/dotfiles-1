@@ -11,6 +11,7 @@
 
 - name: install templates
   template: >
-      src={{ item }}.j2
-      dest={{ ssh_client_dot_path }}/{{ item }}
+      src={{ item.name }}.j2
+      dest={{ ssh_client_dot_path }}/{{ item.name }}
+      mode={{ item.mode }}
   with_items: ssh_client_templates

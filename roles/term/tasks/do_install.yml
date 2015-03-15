@@ -35,3 +35,16 @@
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
   with_items: term_files
+
+- name: mk bin dir
+  file: >
+      path={{ term_bin_path }}
+      state=directory
+      mode=750
+
+- name: install bin
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=750
+  with_items: term_bin

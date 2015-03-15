@@ -1,4 +1,5 @@
 term_perls_path: "{{ ansible_env.HOME }}/.urxvt/ext"
+term_bin_path: "{{ ansible_env.HOME }}/bin"
 
 term_packages:
     - rxvt-unicode-256color
@@ -12,3 +13,6 @@ term_files:
     - .bashrc
     - .bash_logout
     - .git-prompt.sh
+
+term_bin:
+    - bin/xterm_colors.sh

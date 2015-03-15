@@ -10,3 +10,4 @@ term_templates:
 term_files:
     - .bash_aliases
     - .bashrc
+    - .git-prompt.sh

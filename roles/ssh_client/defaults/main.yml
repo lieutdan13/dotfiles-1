@@ -1,0 +1,7 @@
+ssh_client_dot_path: "{{ ansible_env.HOME }}/.ssh/"
+
+ssh_client_packages:
+    - openssh-client
+
+ssh_client_templates:
+    - config

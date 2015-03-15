@@ -6,3 +6,4 @@
   hosts: bmoar
   roles:
       - { role: term, tags: term }
+      - { role: ssh_client, tags: ssh_client }

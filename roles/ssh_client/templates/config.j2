@@ -5,6 +5,12 @@
 # https://github.com/BetterCrypto/Applied-Crypto-Hardening
 # for more learnings
 
+# Github needs diffie-hellman-group-exchange-sha1 some of the time but not always.
+Host github.com
+    User git
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+    Protocol 2
+
 Host *
     KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
     HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-ed25519,ssh-rsa
@@ -14,8 +20,3 @@ Host *
     ForwardX11 false
     Protocol 2
 
-# Github needs diffie-hellman-group-exchange-sha1 some of the time but not always.
-Host github.com
-    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
-    Protocol 2
-    

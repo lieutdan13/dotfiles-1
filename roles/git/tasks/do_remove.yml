@@ -14,3 +14,9 @@
       path={{ ansible_env.HOME}}/{{ item }}
       state=absent
   with_items: git_templates
+
+- name: rm git files
+  file: >
+      path={{ ansible_env.HOME}}/{{ item }}
+      state=absent
+  with_items: git_files

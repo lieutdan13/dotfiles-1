@@ -16,4 +16,5 @@ term_files:
 
 term_bin:
     - bin/xterm_colors.sh
+    - bin/xterm_colors_pacman.sh
     - bin/Ansible-playbook

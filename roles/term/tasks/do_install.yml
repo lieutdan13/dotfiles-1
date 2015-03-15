@@ -26,12 +26,12 @@
   template: >
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
-      mode=750
+      mode=640
   with_items: term_templates
 
 - name: install files
   copy: >
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
-      mode=750
+      mode=640
   with_items: term_files

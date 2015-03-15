@@ -11,3 +11,4 @@
       - { role: git, tags: git }
       - { role: vim, tags: vim }
       - { role: xorg, tags: xorg }
+      - { role: firefox, tags: firefox }

@@ -25,3 +25,8 @@
       path={{ ansible_env.HOME }}/{{ item }}
       state=absent
   with_items: term_files
+
+- name: rm term bin
+  file: >
+      path={{ term_bin_path }}
+      state=absent

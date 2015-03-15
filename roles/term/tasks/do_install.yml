@@ -27,3 +27,9 @@
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
   with_items: term_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+  with_items: term_files

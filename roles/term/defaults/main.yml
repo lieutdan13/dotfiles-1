@@ -6,3 +6,7 @@ term_packages:
 term_templates:
     - .Xresources
     - .Xmodmap
+
+term_files:
+    - .bash_aliases
+    - .bashrc

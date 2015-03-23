@@ -11,20 +11,22 @@
 - name: install i3wm from backports
   sudo: true
   apt: >
-    name=i3
+    name={{ item }}
     state=latest
     update_cache=true
     default_release=wheezy-backports
   when: ansible_distribution == 'Debian'
+  with_items: i3_packages
   tags: packages
 
 - name: install i3wm on ubuntu
   sudo: true
   apt: >
-    name=i3
+    name={{ item }}
     state=latest
     update_cache=true
   when: ansible_distribution == 'Ubuntu'
+  with_items: i3_packages
   tags: packages
 
 - name: create .i3 dir

@@ -127,6 +127,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+Shift+P exec i3lock -n -c 000000
+
 #colors
 
 # class                 border   backgr.  text     indicator

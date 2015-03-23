@@ -1,3 +1,8 @@
 vms_packages:
     - lxc
     - bridge-utils
+    - qemu-kvm
+    - qemu
+    - libvirt0
+    - libvirt-dev
+    - libvirt-bin

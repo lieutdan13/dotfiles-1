@@ -3,10 +3,10 @@
 - name: install packages
   sudo: true
   apt: >
-      name={{ item }}
+      name={{ item.name }}
       state=latest
       update_cache=true
-      default_release=wheezy-backports
+      default_release={{ item.default_release }}
   with_items: vim_packages
   tags: packages
 

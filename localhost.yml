@@ -11,7 +11,8 @@
       - { role: git, tags: git }
       - { role: vim, tags: vim }
       - { role: truecrypt, tags: truecrypt }
+      - { role: passman, tags: passman }
         # require window manager
       - { role: xorg, tags: xorg }
-      - { role: firefox, tags: firefox }
       - { role: i3, tags: i3 }
+      - { role: firefox, tags: firefox }

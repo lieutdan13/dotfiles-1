@@ -1,0 +1,6 @@
+---
+
+- name: remove passman blob
+  file: >
+    path={{ ansible_env.HOME }}/.passman
+    state=absent

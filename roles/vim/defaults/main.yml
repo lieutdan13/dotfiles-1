@@ -1,7 +1,8 @@
 ---
 
 vim_packages:
-    - vim
+    - vim-gtk
+    - exuberant-ctags
 
 vim_files:
     - .vim/colors/jellybeans.vim
@@ -9,3 +10,7 @@ vim_files:
 vim_templates:
     - .vimrc
     - .ycm_global_conf.py
+
+vim_dirs:
+    - bundle
+    - colors

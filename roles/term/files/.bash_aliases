@@ -166,3 +166,6 @@ else \
   echo " '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
 fi)'
 
+if ! echo $PATH | grep -q "$HOME/bin"; then
+    export PATH=$PATH:$HOME/bin
+fi

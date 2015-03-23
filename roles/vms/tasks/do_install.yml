@@ -9,3 +9,9 @@
   with_items: vms_packages
   tags: packages
 
+- name: add {{ ansible_env.USER }} to VM groups
+  sudo: true
+  user: >
+    name={{ ansible_env.USER }}
+    append=true
+    groups=libvirt,libvirt-qemu

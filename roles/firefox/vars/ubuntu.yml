@@ -1,0 +1,9 @@
+firefox_pref_path: '/usr/lib/firefox/defaults/pref'
+
+firefox_packages:
+    - firefox
+
+firefox_templates: []
+
+firefox_files:
+    - user.js

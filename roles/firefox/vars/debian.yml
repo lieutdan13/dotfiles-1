@@ -1,0 +1,9 @@
+firefox_pref_path: '/usr/lib/iceweasel/defaults/pref'
+
+firefox_packages:
+    - iceweasel
+
+firefox_templates: []
+
+firefox_files:
+    - user.js

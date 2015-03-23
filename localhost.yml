@@ -14,3 +14,4 @@
         # require window manager
       - { role: xorg, tags: xorg }
       - { role: firefox, tags: firefox }
+      - { role: i3, tags: i3 }

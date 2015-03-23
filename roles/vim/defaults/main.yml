@@ -3,7 +3,8 @@
 vim_packages:
     - vim
 
-vim_files: []
+vim_files:
+    - .vim/colors/jellybeans.vim
 
 vim_templates:
     - .vimrc

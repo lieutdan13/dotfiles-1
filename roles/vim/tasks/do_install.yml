@@ -9,6 +9,12 @@
   with_items: vim_packages
   tags: packages
 
+- name: add vim colors dir
+  file: >
+    path={{ ansible_env.HOME }}/.vim/colors
+    state=directory
+    mode=770
+
 - name: install templates
   template: >
       src={{ item }}.j2

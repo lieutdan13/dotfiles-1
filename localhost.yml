@@ -10,5 +10,7 @@
       - { role: ssh_client, tags: ssh_client }
       - { role: git, tags: git }
       - { role: vim, tags: vim }
+      - { role: truecrypt, tags: truecrypt }
+        # require window manager
       - { role: xorg, tags: xorg }
       - { role: firefox, tags: firefox }

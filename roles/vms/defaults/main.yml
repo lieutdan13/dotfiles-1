@@ -1,0 +1,3 @@
+vms_packages:
+    - lxc
+    - bridge-utils

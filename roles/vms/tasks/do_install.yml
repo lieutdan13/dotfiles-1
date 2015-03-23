@@ -1,0 +1,11 @@
+---
+
+- name: install VM packages
+  sudo: true
+  apt: >
+    name={{ item }}
+    state=latest
+    update_cache=true
+  with_items: vms_packages
+  tags: packages
+

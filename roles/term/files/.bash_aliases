@@ -105,6 +105,9 @@ alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'
 alias tmux='tmux -2'
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
+# [passman]
+alias passman_mount='truecrypt $HOME/.passman $HOME/mnt/truecrypt0'
+
 # [func]
 function check_ulimits {
     for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2  

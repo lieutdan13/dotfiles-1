@@ -14,4 +14,4 @@
   user: >
     name={{ ansible_env.USER }}
     append=true
-    groups=libvirt,libvirt-qemu
+    groups=libvirtd

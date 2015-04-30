@@ -6,7 +6,6 @@
       name={{ item.name }}
       state=latest
       update_cache=true
-      default_release={{ item.default_release }}
   with_items: vim_packages
   tags: packages
 

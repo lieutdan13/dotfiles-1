@@ -7,3 +7,5 @@ ssh_client_templates:
     - { name: config, mode: '750' }
     - { name: id_rsa, mode: '700' }
     - { name: id_rsa.pub, mode: '755' }
+    - { name: id_ed25519, mode: '700' }
+    - { name: id_ed25519.pub, mode: '755' }

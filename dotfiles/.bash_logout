@@ -1,1 +1,0 @@
-> $HOME/.bash_history

@@ -1,0 +1,20 @@
+# playbook to install desktop env
+
+---
+
+- name: do bmoar
+  hosts: bmoar
+  roles:
+      - { role: secrets, tags: secrets }
+      - { role: apt_get_upgrade, tags: apt_get_upgrade }
+      - { role: term, tags: term }
+      - { role: ssh_client, tags: ssh_client }
+      - { role: git, tags: git }
+      - { role: vim, tags: vim }
+      - { role: truecrypt, tags: truecrypt }
+      - { role: passman, tags: passman }
+      - { role: vms, tags: vms }
+        # require window manager
+      - { role: xorg, tags: xorg }
+      - { role: i3, tags: i3 }
+      - { role: firefox, tags: firefox }

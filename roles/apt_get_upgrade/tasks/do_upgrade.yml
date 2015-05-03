@@ -1,0 +1,7 @@
+---
+
+- name: apt-get dist-upgrade
+  sudo: true
+  apt: >
+    upgrade=dist
+    update_cache=true

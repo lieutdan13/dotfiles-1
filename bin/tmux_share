@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -eu
-set -o pipefail
-
-tmux -S /tmp/$USER_share new -s $USER_share

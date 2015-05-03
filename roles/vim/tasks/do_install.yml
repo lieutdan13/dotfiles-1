@@ -1,0 +1,37 @@
+---
+
+- name: install packages
+  sudo: true
+  apt: >
+      name={{ item.name }}
+      state=latest
+      update_cache=true
+  with_items: vim_packages
+  tags: packages
+
+- name: add vim colors dir
+  file: >
+    path={{ ansible_env.HOME }}/.vim/{{ item }}
+    state=directory
+    mode=770
+  with_items: vim_dirs
+
+- name: install templates
+  template: >
+      src={{ item }}.j2
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: vim_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: vim_files
+
+- name: add vundle repo
+  git: >
+    repo='https://github.com/gmarik/Vundle.vim.git'
+    dest={{ ansible_env.HOME }}/.vim/bundle/Vundle.vim
+    update=false

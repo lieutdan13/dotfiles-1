@@ -1,0 +1,17 @@
+---
+
+vim_packages:
+    - { name: vim-gtk, default_release: 'wheezy-backports' }
+    - { name: exuberant-ctags, default_release: 'wheezy-backports' }
+    - { name: cmake, default_release: 'wheezy' }
+
+vim_files:
+    - .vim/colors/jellybeans.vim
+
+vim_templates:
+    - .vimrc
+    - .ycm_global_conf.py
+
+vim_dirs:
+    - bundle
+    - colors

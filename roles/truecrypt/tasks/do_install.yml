@@ -1,0 +1,13 @@
+---
+
+- name: clone truecrypt repo
+  git: >
+    repo={{ git_base_repo }}/truecrypt-archive
+    version=7.1a
+    dest={{ ansible_env.HOME }}/git/truecrypt-archive
+
+- name: ensure truecrypt mount point exists
+  file: >
+    path={{ ansible_env.HOME }}/mnt/truecrypt0
+    state=directory
+    mode=700

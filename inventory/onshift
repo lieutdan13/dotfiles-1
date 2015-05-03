@@ -1,0 +1,8 @@
+# onshift work repo
+[bmoar]
+localhost
+
+[all:vars]
+inventory_type=onshift
+ansible_connection=local
+git_base_repo='git@github.com:bmoar'

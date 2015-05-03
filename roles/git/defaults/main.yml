@@ -1,0 +1,10 @@
+git_packages:
+    - git
+
+git_templates:
+    - .gitconfig
+    - .gitignore_global
+
+git_files:
+    - .git-completion.bash
+

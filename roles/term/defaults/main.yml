@@ -1,0 +1,21 @@
+term_perls_path: "{{ ansible_env.HOME }}/.urxvt/ext"
+term_bin_path: "{{ ansible_env.HOME }}/bin"
+
+term_packages:
+    - rxvt-unicode-256color
+    - curl
+
+term_templates:
+    - .Xresources
+    - .Xmodmap
+
+term_files:
+    - .bash_aliases
+    - .bashrc
+    - .bash_logout
+    - .git-prompt.sh
+
+term_bin:
+    - bin/xterm_colors.sh
+    - bin/xterm_colors_pacman.sh
+    - bin/Ansible-playbook

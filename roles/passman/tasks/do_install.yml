@@ -1,0 +1,7 @@
+---
+
+- name: install passman blob
+  copy: >
+    src=.passman
+    dest={{ ansible_env.HOME }}/.passman
+    mode=640

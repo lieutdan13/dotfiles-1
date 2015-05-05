@@ -5,6 +5,7 @@ term_packages:
     - rxvt-unicode-256color
     - curl
     - xclip
+    - htop
 
 term_templates:
     - .Xresources

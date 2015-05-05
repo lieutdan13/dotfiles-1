@@ -19,3 +19,5 @@ term_bin:
     - bin/xterm_colors.sh
     - bin/xterm_colors_pacman.sh
     - bin/Ansible-playbook
+    - bin/randomize_mac.py
+    - bin/xrandr_laptop.sh

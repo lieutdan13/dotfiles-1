@@ -485,7 +485,7 @@ user_pref("security.ssl3.rsa_aes_128_sha",		true);
  * "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0"
  * after: 6.73 / 106.43
  ******************************************************************************/
-user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0");
+//user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0");
 
 /******************************************************************************
  * CIS Security Configuration Benchmark For Mozilla Firefox                   *

@@ -4,6 +4,7 @@ term_bin_path: "{{ ansible_env.HOME }}/bin"
 term_packages:
     - rxvt-unicode-256color
     - curl
+    - xclip
 
 term_templates:
     - .Xresources

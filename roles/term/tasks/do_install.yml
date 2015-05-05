@@ -10,7 +10,6 @@
   tags: packages
 
 - name: mk urxvt-perls dir
-  sudo: false
   file: >
       path={{ term_perls_path }}
       state=directory
@@ -48,3 +47,7 @@
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=750
   with_items: term_bin
+
+- name: install vundle packages
+  shell: >
+      echo "\n" | vim -c "VundleUpdate" -c "q" -c "q"

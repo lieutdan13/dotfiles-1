@@ -1,0 +1,10 @@
+---
+
+- name: install weechat pkgs
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=latest
+      update_cache=true
+  with_items: weechat_pkgs
+  tags: packages

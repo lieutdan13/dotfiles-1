@@ -13,6 +13,7 @@
       - { role: vim, tags: vim }
       - { role: truecrypt, tags: truecrypt }
       - { role: passman, tags: passman }
+      - { role: weechat, tags: weechat }
       - { role: vms, tags: vms }
         # require window manager
       - { role: xorg, tags: xorg }

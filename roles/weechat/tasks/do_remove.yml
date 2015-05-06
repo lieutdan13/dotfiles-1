@@ -1,0 +1,8 @@
+---
+
+- name: rm weechat_pkgs
+  apt: >
+      name={{ item }}
+      state=absent
+  with_items: weechat_pkgs
+  tags: packages

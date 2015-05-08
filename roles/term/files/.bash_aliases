@@ -97,6 +97,10 @@ alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
 # [lxc]
 alias lxc-ls='lxc-ls --fancy'
 
+lxc_da() {
+    for i in $(sudo lxc-ls); do sudo lxc-stop -n $i; sudo lxc-destroy -n $i; done
+}
+
 # [ssh]
 alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
 alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'

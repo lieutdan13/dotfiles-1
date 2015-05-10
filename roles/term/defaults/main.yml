@@ -6,6 +6,7 @@ term_packages:
     - curl
     - xclip
     - htop
+    - tree
 
 term_templates:
     - .Xresources

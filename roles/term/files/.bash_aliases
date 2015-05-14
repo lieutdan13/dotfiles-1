@@ -77,6 +77,33 @@ On_ICyan="\[\033[0;106m\]"    # Cyan
 On_IWhite="\[\033[0;107m\]"   # White
 
 
+# [ansible]
+
+Ansible_upgrade() {
+    inv_type=$1
+    do_reboot=$2
+
+    if [[ -z $inv_type ]]; then
+        echo "Ansible_upgrade inv_type [ do_reboot ]"
+    else
+        source ~/.virtualenvs/ansible-latest/bin/activate
+
+        if [[ ! -z $do_reboot ]]; then
+            Ansible-playbook -i inventory/$inv_type localhost.yml \
+            --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
+            -e apt_get_upgrade_do_upgrade=1 \
+            -e apt_get_upgrade_do_reboot=1 \
+            -K
+        else
+            Ansible-playbook -i inventory/$inv_type localhost.yml \
+            --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
+            -e apt_get_upgrade_do_upgrade=1 \
+            -K
+        fi
+        deactivate
+    fi
+}
+
 # [bash]
 alias ebrc='vim ~/.bashrc'
 alias eba='vim ~/.bash_aliases'

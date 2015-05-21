@@ -78,8 +78,14 @@ On_IWhite="\[\033[0;107m\]"   # White
 
 
 # [ansible]
-_Ansible_dotfiles_repo() {
-    echo "$(ls -x $HOME/git/dotfiles/inventory/)"
+# [globals]
+_Ansible_dotfiles_path="$HOME/git/dotfiles"
+_Ansible_dotfiles_repo=$(ls -x $_Ansible_dotfiles_path/inventory/)
+
+_Ansible_src_dir=$(ls -x $_Ansible_dotfiles_path/inventory/)
+
+_Ansible_deactivate() {
+    deactivate
 }
 
 _Ansible_source() {
@@ -92,7 +98,7 @@ _Ansible_source() {
 Ansible_gdi() {
     inv_type=$1
     do_reboot=$2
-    inv_types=$(_Ansible_dotfiles_repo)
+    inv_types=$_Ansible_dotfiles_repo
 
     if [[ -z $inv_type ]]; then
         cat <<EOF
@@ -120,7 +126,32 @@ EOF
         ${@:2:255}
     fi
 
-    deactivate
+    _Ansible_deactivate
+}
+
+Ansible_mr() {
+    if [[ -n $1 ]]; then
+        mkdir -p $_Ansible_dotfiles_path/roles/$1/{tasks,defaults,handlers,templates}
+        cat > $_Ansible_dotfiles_path/roles/$1/tasks/main.yml <<EOF
+---
+
+- include: do_install.yml
+  when: $1 |default(False) |bool == true or global_do_install |default(False) |bool == True
+
+- include: do_remove.yml
+  when: $1 |default(False) |bool == true
+EOF
+        touch $_Ansible_dotfiles_path/roles/$1/tasks/do_install.yml
+        touch $_Ansible_dotfiles_path/roles/$1/tasks/do_remove.yml
+
+    else
+        cat <<EOF
+Ansible_mr name_of_role
+name_of_role: str to make
+EOF
+        return 1
+    fi
+
 }
 
 # [bash]

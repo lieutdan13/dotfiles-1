@@ -3,7 +3,7 @@
 - name: install sysctl template
   sudo: True
   template: >
-      src="64-{{ ansible_env['USER'] }}-magic.conf.j2"
+      src="64-user-magic.conf.j2"
       dest="/etc/sysctl.d/64-{{ ansible_env['USER'] }}-magic.conf"
   register: sysctl_template_out
   tags: templates
@@ -13,7 +13,7 @@
   command: >
       /bin/true
   notify: sysctl_reboot
-  when: sysctl_template_out.changed == True and sysctl_mod_disabled == 0
+  when: sysctl_template_out.changed == True and sysctl_mod_disabled == 64
 
 - name: install hostfile
   sudo: true

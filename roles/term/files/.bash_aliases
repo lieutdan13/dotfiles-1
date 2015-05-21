@@ -86,7 +86,7 @@ _Ansible_source() {
     venv_dir=$HOME/.virtualenvs/Ansible && \
     virtualenv $venv_dir && \
     source $venv_dir/bin/activate && \
-    pip install ansible --upgrade
+    pip install ansible
 }
 
 Ansible_gdi() {
@@ -105,17 +105,19 @@ EOF
 
     _Ansible_source
 
-    if [[ ! -z $do_reboot ]]; then
+    if [[ -z $do_reboot ]]; then
         Ansible-playbook -i inventory/$inv_type localhost.yml \
         --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
         -e global_do_install=1 \
         -e apt_get_upgrade_do_reboot=1 \
-        -K
+        -K \
+        ${@:2:255}
     else
         Ansible-playbook -i inventory/$inv_type localhost.yml \
         --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
         -e global_do_install=1 \
-        -K
+        -K \
+        ${@:2:255}
     fi
 
     deactivate

@@ -1,0 +1,7 @@
+---
+
+- name: sysctl_reboot
+  sudo: True
+  command: >
+      shutdown -r now "ansible reboot"
+  tags: reboots

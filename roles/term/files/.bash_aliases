@@ -78,30 +78,47 @@ On_IWhite="\[\033[0;107m\]"   # White
 
 
 # [ansible]
+_Ansible_dotfiles_repo() {
+    echo "$(ls -x $HOME/git/dotfiles/inventory/)"
+}
 
-Ansible_upgrade() {
+_Ansible_source() {
+    venv_dir=$HOME/.virtualenvs/Ansible && \
+    virtualenv $venv_dir && \
+    source $venv_dir/bin/activate && \
+    pip install ansible --upgrade
+}
+
+Ansible_gdi() {
     inv_type=$1
     do_reboot=$2
+    inv_types=$(_Ansible_dotfiles_repo)
 
     if [[ -z $inv_type ]]; then
-        echo "Ansible_upgrade inv_type [ do_reboot ]"
-    else
-        source ~/.virtualenvs/ansible-latest/bin/activate
-
-        if [[ ! -z $do_reboot ]]; then
-            Ansible-playbook -i inventory/$inv_type localhost.yml \
-            --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
-            -e apt_get_upgrade_do_upgrade=1 \
-            -e apt_get_upgrade_do_reboot=1 \
-            -K
-        else
-            Ansible-playbook -i inventory/$inv_type localhost.yml \
-            --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
-            -e apt_get_upgrade_do_upgrade=1 \
-            -K
-        fi
-        deactivate
+        cat <<EOF
+Ansible_upgrade inv_type [ do_reboot ]
+inv_types: $result
+do_reboot: bool
+EOF
+        return 1
     fi
+
+    _Ansible_source
+
+    if [[ ! -z $do_reboot ]]; then
+        Ansible-playbook -i inventory/$inv_type localhost.yml \
+        --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
+        -e global_do_install=1 \
+        -e apt_get_upgrade_do_reboot=1 \
+        -K
+    else
+        Ansible-playbook -i inventory/$inv_type localhost.yml \
+        --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
+        -e global_do_install=1 \
+        -K
+    fi
+
+    deactivate
 }
 
 # [bash]

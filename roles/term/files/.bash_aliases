@@ -105,13 +105,13 @@ EOF
 
     _Ansible_source
 
-    if [[ -z $do_reboot ]]; then
+    if [[ $do_reboot = "-r" ]]; then
         Ansible-playbook -i inventory/$inv_type localhost.yml \
         --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
         -e global_do_install=1 \
         -e apt_get_upgrade_do_reboot=1 \
         -K \
-        ${@:2:255}
+        ${@:3:255}
     else
         Ansible-playbook -i inventory/$inv_type localhost.yml \
         --vault-password-file=$HOME/.vault_dotfiles_$inv_type \

@@ -6,8 +6,16 @@
     version=7.1a
     dest={{ ansible_env.HOME }}/git/truecrypt-archive
 
+- name: check truecrypt mount point
+  sudo: True
+  stat: >
+    path={{ ansible_env.HOME }}/mnt/truecrypt0
+  register: truecrypt_mount_point_rc
+
 - name: ensure truecrypt mount point exists
+  sudo: True
   file: >
     path={{ ansible_env.HOME }}/mnt/truecrypt0
     state=directory
-    mode=700
+    mode=755
+  when: truecrypt_mount_point_rc.exists | default(False) | bool == False

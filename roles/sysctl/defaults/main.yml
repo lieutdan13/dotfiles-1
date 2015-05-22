@@ -5,3 +5,4 @@ _sysctl_domains: {
 sysctl_domainname: "{{ _sysctl_domains.get(inventory_type, '%s.systems' % inventory_type) }}"
 sysctl_hostname: box
 sysctl_mod_disabled: 0
+sysctl_default_hosts: ""

@@ -136,10 +136,10 @@ Ansible_mr() {
 ---
 
 - include: do_install.yml
-  when: $1 |default(False) |bool == true or global_do_install |default(False) |bool == True
+  when: $1_do_install |default(False) |bool == true or global_do_install |default(False) |bool == True
 
 - include: do_remove.yml
-  when: $1 |default(False) |bool == true
+  when: $1_do_remove |default(False) |bool == true
 EOF
         touch $_Ansible_dotfiles_path/roles/$1/tasks/do_install.yml
         touch $_Ansible_dotfiles_path/roles/$1/tasks/do_remove.yml

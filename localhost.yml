@@ -9,6 +9,8 @@
       - { role: apt_get_upgrade, tags: apt_get_upgrade }
       - { role: term, tags: term }
       - { role: sysctl, tags: sysctl }
+      - { role: sshd, tags: sshd,
+            sshd_config_opts_enabled: [ 'hardened_crypto' ] }
       - { role: ssh_client, tags: ssh_client }
       - { role: git, tags: git }
       - { role: vim, tags: vim }

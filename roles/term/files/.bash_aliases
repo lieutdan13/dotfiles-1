@@ -187,7 +187,7 @@ alias tmux='tmux -2'
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
 # [passman]
-alias passman_mount='truecrypt $HOME/.passman $HOME/mnt/truecrypt0'
+alias passman_mount='truecrypt $HOME/$_Ansible_dotfiles_path/roles/term/files/.passman $HOME/mnt/truecrypt_passman'
 
 # [func]
 function check_ulimits {

@@ -119,6 +119,8 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " move up and down between long lines better
 map j gj
 map k gk
+" write file with sudo
+map <leader>w :w !sudo tee %<CR>
 
 " space becomes search, Ctrl-space is backwards search
 map <space> /
@@ -129,6 +131,9 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
+
+" write file with sudo
+map <leader>w :w !sudo tee %<CR>
 
 " close current buffer
 map <leader>bd :Bclose<cr>

@@ -156,8 +156,8 @@ EOF
 
 # [bash]
 alias ebrc='vim ~/.bashrc'
-alias eba='vim ~/.bash_aliases'
-alias sba='source ~/.bash_aliases'
+alias eba='vim $HOME/$_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
+alias sba='source $HOME/$_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
 
 # [git]
 alias g='git'
@@ -181,6 +181,22 @@ lxc_da() {
 # [ssh]
 alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
 alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'
+
+# [sysadmin]
+Sysadmin_au() {
+    u=$1
+    if [[ -z $u ]]; then
+        cat <<EOF
+Sysadmin_au user
+user: username to add
+EOF
+    else
+        sudo useradd -m -s /bin/bash $u && \
+        sudo -u $u mkdir -p /home/$u/.ssh && \
+        curl https://github.com/$u.keys | sudo -u $u tee /home/$u/.ssh/authorized_key
+    fi
+
+}
 
 # [tmux]
 alias tmux='tmux -2'

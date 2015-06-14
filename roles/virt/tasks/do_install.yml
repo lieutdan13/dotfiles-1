@@ -1,0 +1,135 @@
+---
+
+- name: install {{ virt_scripts }} scripts
+  sudo: true
+  template: >
+      src={{ item }}.sh.j2
+      dest=/usr/local/bin/{{ item }}
+      mode=755
+  with_items: virt_scripts
+
+- name: ensure ovs dir exists
+  sudo: true
+  file: >
+      path=/etc/ovs
+      state=directory
+
+- name: install ovs if scripts
+  sudo: true
+  template: >
+      src={{ item }}.j2
+      dest=/etc/ovs/{{ item }}
+      mode=755
+  with_items: virt_ovs_if_scripts
+
+- name: add ovswitch brg net bridge
+  sudo: true
+  openvswitch_bridge: >
+      bridge={{ virt_guest_bridge }}
+      state=present
+
+- name: add ovswitch vbrg net bridge
+  sudo: true
+  openvswitch_bridge: >
+      bridge={{ virt_vguest_bridge }}
+      state=present
+
+- name: add {{ virt_guest_phys_port }} to ovswitch virt_guest_bridge
+  sudo: true
+  openvswitch_port: >
+      bridge={{ virt_guest_bridge }}
+      port={{ virt_guest_phys_port }}
+      state=present
+
+- name: ensure isomirror base exists
+  sudo: true
+  file: >
+      path="{{ virt_storage_path }}"
+      state=directory
+      mode=755
+
+- name: ensure {{ ansible_env['USER'] }} isomirror exists
+  sudo: true
+  file: >
+      path="{{ virt_storage_path }}/{{ ansible_env['USER'] }}"
+      state=directory
+      mode=755
+      owner="{{ ansible_env['USER'] }}"
+
+- name: ensure isomirror group exists
+  sudo: true
+  group: >
+      name=isomirror
+      state=present
+
+- name: add {{ ansible_env['USER'] }} to isomirror group
+  sudo: true
+  user: >
+      name="{{ ansible_env['USER']}}"
+      groups=isomirror
+      append=true
+
+- name: ensure isomirror exists
+  sudo: true
+  file: >
+      path="{{ virt_iso_path }}"
+      state=directory
+      mode=775
+      group=isomirror
+
+- name: check for pfsense in isomirror
+  stat: >
+      path="{{ virt_iso_path }}/pfsense.iso"
+      follow=true
+  register: virt_pfsense_iso_output
+
+- name: download and checksum the pfsense iso if it doesn't exist
+  shell: >
+      curl http://files.bgn.pfsense.org/mirror/downloads/{{ virt_pfsense_iso_file }}.gz > {{ virt_iso_path }}/{{ virt_pfsense_iso_file }}.gz
+  when:
+      - virt_pfsense_iso_output is defined
+      - virt_pfsense_iso_output.stat.exists == False
+
+- name: download pfsense sha256 checksum
+  shell: >
+      curl https://files.pfsense.org/hashes/{{ virt_pfsense_iso_file }}.gz.sha256 > {{ virt_iso_path }}/{{ virt_pfsense_iso_file }}.gz.sha256
+  when:
+      - virt_pfsense_iso_output is defined
+      - virt_pfsense_iso_output.stat.exists == False
+
+- name: ensure pfsense checksum matches
+  command: >
+      sha256sum -c {{ virt_pfsense_iso_file }}.gz.sha256
+  args:
+      chdir: "{{ virt_iso_path }}"
+  when:
+      - virt_pfsense_iso_output is defined
+      - virt_pfsense_iso_output.stat.exists == False
+
+- name: gunzip pfsense iso
+  command: >
+      gunzip -f {{ virt_pfsense_iso_file }}.gz
+  args:
+      chdir: "{{ virt_iso_path }}"
+  when:
+      - virt_pfsense_iso_output is defined
+      - virt_pfsense_iso_output.stat.exists == False
+
+- name: symlink pfsense to pfsense.iso
+  file: >
+      state=link
+      src={{ virt_iso_path }}/{{ virt_pfsense_iso_file }}
+      dest={{ virt_iso_path }}/pfsense.iso
+
+- name: check for storage for {{ virt_guest_bridge }} router
+  stat: >
+      path="{{ virt_pfsense_iso_storage }}"
+      follow=true
+  register: virt_pfsense_iso_storage_output
+
+- name: provision storage for {{ virt_guest_bridge }} router
+  command: >
+      qemu-img create "{{ virt_pfsense_iso_storage }}" "{{ virt_pfsense_iso_size }}"
+  when:
+      - virt_pfsense_iso_storage_output is defined
+      - virt_pfsense_iso_storage_output.stat.exists == False

@@ -1,0 +1,22 @@
+virt_guest_bridge: brg0
+virt_vguest_bridge: vbrg0
+
+virt_pfsense_version: "2.2.2"
+virt_pfsense_iso_file: "pfSense-LiveCD-{{ virt_pfsense_version }}-RELEASE-amd64.iso"
+virt_pfsense_iso_size: "1G"
+virt_pfsense_iso_storage: "{{ virt_storage_path }}/{{ ansible_env['USER'] }}/pfsense_{{ virt_guest_bridge }}.qcow2"
+
+virt_storage_path: /mnt/virt/local
+virt_iso_path: /srv/isomirror
+
+virt_guest_phys_port: "{% if inventory_type == 'local' %}p7p1{% elif inventory_type == 'onshift' %}eth0{% endif %}"
+
+virt_scripts:
+    - start_router
+    - start_vm
+
+virt_ovs_if_scripts:
+    - brg_router_ifdown
+    - brg_router_ifup
+    - vbrg_ifup
+    - vbrg_ifdown

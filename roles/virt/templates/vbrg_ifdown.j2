@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+switch="{{ virt_vguest_bridge }}"
+/sbin/ifconfig $1 0.0.0.0 down
+ovs-vsctl del-port $switch $1

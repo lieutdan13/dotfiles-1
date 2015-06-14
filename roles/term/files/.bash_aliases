@@ -198,6 +198,14 @@ EOF
 
 }
 
+# [ovs]
+
+Ovs_del_brs() {
+    for i in $(sudo ovs-vsctl show | grep Bridge | awk '{ print $2}'| tr -d \"); 
+        do sudo ovs-vsctl del-br $i ; 
+    done
+}
+
 # [tmux]
 alias tmux='tmux -2'
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'

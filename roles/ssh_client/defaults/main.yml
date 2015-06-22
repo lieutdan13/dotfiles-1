@@ -2,6 +2,7 @@ ssh_client_dot_path: "{{ ansible_env.HOME }}/.ssh/"
 
 ssh_client_packages:
     - openssh-client
+    - sshfs
 
 ssh_client_templates:
     - { name: config, mode: '750' }

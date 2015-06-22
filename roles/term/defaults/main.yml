@@ -7,6 +7,14 @@ term_packages:
     - xclip
     - htop
     - tree
+    - glances
+    - sysstat
+    - ngrep
+    - iftop
+    - strace
+    - fortune
+    - httpie
+    - ncdu
 
 term_templates:
     - .Xresources

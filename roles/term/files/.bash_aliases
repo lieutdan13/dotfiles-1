@@ -162,9 +162,13 @@ EOF
 }
 
 # [bash]
-alias ebrc='vim ~/.bashrc'
-alias eba='vim $_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
-alias sba='source $_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
+function eba {
+    vim $_Ansible_dotfiles_path/roles/term/files/.bash_aliases
+}
+
+function sba {
+    source $_Ansible_dotfiles_path/roles/term/files/.bash_aliases
+}
 
 # [git]
 alias g='git'
@@ -218,7 +222,9 @@ alias tmux='tmux -2'
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
 # [passman]
-alias passman_mount='truecrypt $_Ansible_dotfiles_path/roles/term/files/.passman $HOME/mnt/truecrypt_passman'
+function passman_mount {
+    truecrypt $_Ansible_dotfiles_path/roles/passman/files/.passman $HOME/mnt/truecrypt_passman
+}
 
 # [func]
 function check_ulimits {

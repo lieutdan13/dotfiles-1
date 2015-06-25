@@ -111,6 +111,8 @@ EOF
 
     _Ansible_source
 
+    pushd $_Ansible_dotfiles_path
+
     if [[ $do_reboot = "-r" ]]; then
         Ansible-playbook -i inventory/$inv_type localhost.yml \
         --vault-password-file=$HOME/.vault_dotfiles_$inv_type \
@@ -125,6 +127,8 @@ EOF
         -K \
         ${@:2:255}
     fi
+
+    popd
 
     _Ansible_deactivate
 }
@@ -156,8 +160,8 @@ EOF
 
 # [bash]
 alias ebrc='vim ~/.bashrc'
-alias eba='vim $HOME/$_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
-alias sba='source $HOME/$_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
+alias eba='vim $_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
+alias sba='source $_Ansible_dotfiles_path/roles/term/files/.bash_aliases'
 
 # [git]
 alias g='git'
@@ -211,7 +215,7 @@ alias tmux='tmux -2'
 alias ltmux='if tmux has; then tmux attach; else tmux new; fi'
 
 # [passman]
-alias passman_mount='truecrypt $HOME/$_Ansible_dotfiles_path/roles/term/files/.passman $HOME/mnt/truecrypt_passman'
+alias passman_mount='truecrypt $_Ansible_dotfiles_path/roles/term/files/.passman $HOME/mnt/truecrypt_passman'
 
 # [func]
 function check_ulimits {

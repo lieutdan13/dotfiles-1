@@ -16,6 +16,7 @@ term_packages:
     - httpie
     - ncdu
     - ttf-ancient-fonts
+    - pv
 
 term_templates:
     - .Xresources

@@ -1,8 +1,9 @@
 # new shell commands
 
+xset r rate 250 35
+
 if [[ $(xmodmap | grep Caps_Lock) ]]; then
     xmodmap $HOME/.Xmodmap
-    xset r rate 250 35
 fi
 
 # [colors]

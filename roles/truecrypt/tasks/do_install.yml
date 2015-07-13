@@ -5,6 +5,7 @@
     repo={{ git_base_repo }}/truecrypt-archive
     version=7.1a
     dest={{ ansible_env.HOME }}/git/truecrypt-archive
+  tags: packages
 
 - name: check truecrypt mount point
   sudo: True

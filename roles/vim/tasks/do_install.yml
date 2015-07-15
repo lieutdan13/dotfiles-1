@@ -1,5 +1,10 @@
 ---
 
+- name: add neovim ppa
+  apt_repository: >
+      repo='ppa:neovim-ppa/unstable'
+      state=present
+
 - name: install packages
   sudo: true
   apt: >
@@ -7,6 +12,14 @@
       state=latest
       update_cache=true
   with_items: vim_packages
+  tags: packages
+
+- name: install neovim python extensions
+  sudo_user: "{{ ansible_env.USER }}"
+  pip: >
+      name=neovim
+      state=present
+      extra_args="--user"
   tags: packages
 
 - name: add vim colors dir
@@ -35,3 +48,12 @@
     repo='https://github.com/gmarik/Vundle.vim.git'
     dest={{ ansible_env.HOME }}/.vim/bundle/Vundle.vim
     update=false
+
+- name: symlink for neovim
+  file: >
+      src="{{ ansible_env.HOME }}/.{{ item }}"
+      dest="{{ ansible_env.HOME }}/.n{{ item }}"
+      state=link
+  with_items:
+      - vimrc
+      - vim

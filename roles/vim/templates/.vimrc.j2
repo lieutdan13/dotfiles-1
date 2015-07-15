@@ -81,6 +81,12 @@ set wrap
 " ===========================================================
 " Vim Plugins
 " ===========================================================
+
+" python interpreter selection
+
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
@@ -131,6 +137,16 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
+
+" move between windows in terminal mode
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " write file with sudo
 map <leader>w :w !sudo tee %<CR>

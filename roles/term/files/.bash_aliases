@@ -190,6 +190,23 @@ lxc_da() {
     for i in $(sudo lxc-ls); do sudo lxc-stop -n $i; sudo lxc-destroy -n $i; done
 }
 
+Lxc_create() {
+    name=$1
+    if [[ -z $name ]]; then
+        cat <<EOF
+Lxc_create container_name
+default is to use ubuntu template
+EOF
+else
+    container_template=ubuntu
+    auth_keys=".ssh/authorized_keys"
+    default_packages="python,git"
+    sudo lxc-create -t $container_template -n $name -- -u $USER -S $HOME/$auth_keys --packages $default_packages
+    sudo lxc-start -d -n $name
+fi
+
+}
+
 # [ssh]
 alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
 alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'

@@ -181,7 +181,12 @@ alias gpud='git pull --rebase upstream develop'
 alias gpuom='git push origin master'
 alias gpuod='git push origin develop'
 
+gpuocb() {
+    git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }')
+}
+
 alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
+alias grrmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
 
 # [lxc]
 alias lxc-ls='lxc-ls --fancy'

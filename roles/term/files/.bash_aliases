@@ -182,7 +182,7 @@ alias gpuom='git push origin master'
 alias gpuod='git push origin develop'
 
 gpuocb() {
-    git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }')
+    git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }') $@
 }
 
 alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'

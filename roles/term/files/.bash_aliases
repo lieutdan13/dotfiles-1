@@ -6,6 +6,24 @@ if [[ $(xmodmap | grep Caps_Lock) ]]; then
     xmodmap $HOME/.Xmodmap
 fi
 
+# Line table
+#        0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+#U+250x  ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏
+
+#U+251x  ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟
+
+#U+252x  ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯
+
+#U+253x  ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿
+
+#U+254x  ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏
+
+#U+255x  ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟
+
+#U+256x  ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯
+
+#U+257x  ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿
+
 # [colors]
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
@@ -80,13 +98,15 @@ On_IPurple="\[\033[10;95m\]"  # Purple
 On_ICyan="\[\033[0;106m\]"    # Cyan
 On_IWhite="\[\033[0;107m\]"   # White
 
-
-# [ansible]
 # [globals]
 _Ansible_dotfiles_path="$HOME/git/dotfiles"
 _Ansible_dotfiles_repo=$(ls -x $_Ansible_dotfiles_path/inventory/)
 
 _Ansible_src_dir=$(ls -x $_Ansible_dotfiles_path/inventory/)
+
+_Git_repos=$HOME/git/
+
+# [ansible]
 
 _Ansible_deactivate() {
     deactivate
@@ -182,16 +202,15 @@ alias gpuom='git push origin master'
 alias gpuod='git push origin develop'
 
 gpuocb() {
-    git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }') $@
+    git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }')
 }
 
 alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
-alias grrmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
 
 # [lxc]
 alias lxc-ls='lxc-ls --fancy'
 
-Lxc_da() {
+lxc_da() {
     for i in $(sudo lxc-ls); do sudo lxc-stop -n $i; sudo lxc-destroy -n $i; done
 }
 
@@ -215,6 +234,35 @@ fi
 # [ssh]
 alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
 alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'
+
+# [python]
+
+Virtualenv_make() {
+    name=$1
+    if [[ -z $name ]]; then
+        cat <<EOF
+Virtualenv_make virtualenv_name
+default is to use ubuntu template
+EOF
+else
+    x=$HOME/.virtualenvs/$name
+    virtualenv -p $(which python3) $x && cd $_Git_repos/$name && $x/bin/python setup.py develop
+        source $x/bin/activate
+
+cat <<EOF
+
+$(tput setaf 10)━━┓$(tput sgr0)                  $(tput setaf 10)╭──────────────────╮                   
+$(tput setaf 10)  ╋$(tput sgr0)$(tput setaf 6)──────────────────$(tput setaf 10)┥$(tput sgr0)$(tput setaf 6)    virtualenv    $(tput setaf 10)┝$(tput setaf 6)─────────────────────$(tput sgr0)$(tput sgr0)$(tput setaf 10)⬛$(tput sgr0)
+$(tput setaf 10)━━┛$(tput sgr0)                  $(tput setaf 10)╰──────────────────╯$(tput sgr0)                   
+
+EOF
+
+    echo -n "$(which python) " && echo -n "$(tput setaf 1)" && python3 --version | awk '{ print $2}' && echo "$(tput sgr0)"
+    pip freeze
+    echo ''
+fi
+
+}
 
 # [sysadmin]
 Sysadmin_au() {

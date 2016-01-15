@@ -25,18 +25,20 @@ fi
 #U+257x  ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿
 
 # [colors]
+# TODO replace all these with tput
 # Reset
-Color_Off="\[\033[0m\]"       # Text Reset
+Color_off="$(tput sgr0)"       # Text Reset
 
 # Regular Colors
-Black="\[\033[0;30m\]"        # Black
-Red="\[\033[0;31m\]"          # Red
-Green="\[\033[0;32m\]"        # Green
-Yellow="\[\033[0;33m\]"       # Yellow
-Blue="\[\033[0;34m\]"         # Blue
-Purple="\[\033[0;35m\]"       # Purple
-Cyan="\[\033[0;36m\]"         # Cyan
-White="\[\033[0;37m\]"        # White
+
+Black="$(tput setaf  0)" # "\[\033[0;30m\]"        # Black
+Red="$(tput setaf    1)" # "\[\033[0;31m\]"          # Red
+Green="$(tput setaf  2)" # "\[\033[0;32m\]"        # Green
+Yellow="$(tput setaf 3)" # "\[\033[0;33m\]"       # Yellow
+Blue="$(tput setaf   4)" # "\[\033[0;34m\]"         # Blue
+Purple="$(tput setaf 5)" # "\[\033[0;35m\]"       # Purple
+Cyan="$(tput setaf   6)" # "\[\033[0;36m\]"         # Cyan
+White="$(tput setaf  7)" # "\[\033[0;37m\]"        # White
 
 # Bold
 BBlack="\[\033[1;30m\]"       # Black
@@ -207,6 +209,14 @@ gpuocb() {
 
 alias grmmerged='git branch -D `git branch --merged | grep -v \* | xargs`'
 
+Git_diff() {
+    git diff
+    echo "$Green"
+    git diff --shortstat
+    echo "$Color_off"
+}
+
+
 # [lxc]
 alias lxc-ls='lxc-ls --fancy'
 
@@ -340,7 +350,7 @@ if [ -f $HOME/.git-prompt.sh ]; then
     source $HOME/.git-prompt.sh
 fi
 
-export PS1="$Cyan[$Color_Off \u@\h":'$(git branch &>/dev/null;\
+export PS1="$Cyan[$Color_off \u@\h":'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
@@ -349,10 +359,10 @@ if [ $? -eq 0 ]; then \
   else \
     # @5 - Changes to working tree
     echo "'$IRed'"$(__git_ps1 " {%s}"); \
-  fi) '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
+  fi) '$Color_off$PathShort$Cyan' ]'$Color_off'\n\$ "; \
 else \
   # @2 - Prompt when not in GIT repo
-  echo " '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
+  echo " '$Color_off$PathShort$Cyan' ]'$Color_off'\n\$ "; \
 fi)'
 
 if ! echo $PATH | grep -q "$HOME/bin"; then

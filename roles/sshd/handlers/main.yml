@@ -7,7 +7,5 @@
   failed_when: false
 
 - name: sshd_restart
-  service: >
-      name=ssh
-      state=restarted
-  failed_when: false
+  command: >
+      service ssh restart

@@ -184,6 +184,30 @@ EOF
 
 }
 
+Ansible_postgres_createdb() {
+    db=$1
+    repo_dir=$2
+    repo_dir=${repo_dir:-"$HOME/git/OS-ansible"}
+
+    if [[ -z $db ]]; then
+        cat <<EOF
+Ansible_postgres_createdb db_name
+EOF
+    return 1
+    else
+        mkdir -p $repo_dir/roles/postgres/templates/$db 
+
+        cp $repo_dir/roles/postgres/vars/local/default.yml \
+            $repo_dir/roles/postgres/vars/local/$db.yml 
+        cp $repo_dir/roles/postgres/vars/stage/default.yml \
+            $repo_dir/roles/postgres/vars/stage/$db.yml 
+        cp $repo_dir/roles/postgres/vars/production/default.yml \
+            $repo_dir/roles/postgres/vars/production/$db.yml 
+
+        cp $repo_dir/roles/postgres/templates/default//* $repo_dir/roles/postgres/templates/$db/
+    fi
+}
+
 # [bash]
 function eba {
     vim $_Ansible_dotfiles_path/roles/term/files/.bash_aliases
@@ -240,6 +264,10 @@ else
 fi
 
 }
+
+# [python]
+export PYTHONPATH="$HOME/lib/python"
+
 
 # [ssh]
 alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
@@ -324,6 +352,17 @@ function gen_passwd_safe {
     cat /dev/urandom| tr -dc 'a-zA-Z0-9!@#$%^&*(){}?><-_' | fold -w 24| head -n 4
 }
 
+# [time, performance]
+timer_start() {
+    # timer = timer if timer else $SECONDS
+    timer=${timer:-$SECONDS}
+}
+
+timer_stop() {
+    timer_show=$(($timer - $SECONDS ))
+    unset timer
+}
+
 # allows us to run a command in the background
 null_command() {
     $1 >> /dev/null 2>&1 &
@@ -350,7 +389,7 @@ if [ -f $HOME/.git-prompt.sh ]; then
     source $HOME/.git-prompt.sh
 fi
 
-export PS1="$Cyan[$Color_off \u@\h":'$(git branch &>/dev/null;\
+export PS1="$Cyan[$Color_Off \u@$(hostname -A | tr -d ' ')":'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \

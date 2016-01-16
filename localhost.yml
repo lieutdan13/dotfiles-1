@@ -11,12 +11,14 @@
       - { role: sshd, tags: sshd,
             sshd_config_opts_enabled: [ 'hardened_crypto' ] }
       - { role: ssh_client, tags: ssh_client }
+      - { role: storage, tags: storage }
       - { role: git, tags: git }
       - { role: vim, tags: vim }
       - { role: truecrypt, tags: truecrypt }
       - { role: passman, tags: passman }
       - { role: weechat, tags: weechat }
       - { role: vms, tags: vms }
+      - { role: virt, tags: virt }
         # require window manager
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }

@@ -7,6 +7,10 @@ ovs_r_down="/etc/ovs/brg_router_ifdown"
 ovs_v_up="/etc/ovs/vbrg_ifup"
 ovs_v_down="/etc/ovs/vbrg_ifdown"
 
+# check for id = 0
+# check for argv[1] == 'switch name'
+# check for argv[2] == 'first boot'
+
 qemu-system-x86_64 --enable-kvm -cpu host \
     -boot order=d {{ virt_storage_path }}/{{ ansible_env['USER'] }}/pfsense_{{ virt_guest_bridge }}.qcow2 -m 2G \
     -cdrom {{ virt_iso_path }}/pfsense.iso \

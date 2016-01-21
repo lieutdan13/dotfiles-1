@@ -17,6 +17,7 @@ term_packages:
     - ncdu
     - ttf-ancient-fonts
     - pv
+    - binclock
 
 term_templates:
     - .Xresources

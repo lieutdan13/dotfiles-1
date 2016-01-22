@@ -389,7 +389,7 @@ if [ -f $HOME/.git-prompt.sh ]; then
     source $HOME/.git-prompt.sh
 fi
 
-export PS1="$Cyan[$Color_Off \u@$(hostname -A | tr -d ' ')":'$(git branch &>/dev/null;\
+export PS1="$Cyan[$Color_Off \u@$(hostname -f | tr -d ' ')":'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
